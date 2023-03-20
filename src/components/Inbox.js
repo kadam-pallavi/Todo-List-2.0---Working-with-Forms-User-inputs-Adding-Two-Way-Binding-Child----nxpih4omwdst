@@ -4,23 +4,20 @@ const Inbox = (props) => {
  
   const [newTask, setTask] = useState(false);
  
-  const [ele, setele] = useState({number: 1, title: "haha", date: "1-1-2020"});
+  const [ele, setele] = useState(null);
   const [added, setadded] =useState(4);
   const text = useRef(null);
   const ddate = useRef(null);
   function updateText(e){
     e.preventDefault();
-    setadded(added+1);
     setele({number: added, title: text.current.value, date: (new Date(ddate.current.value)).toLocaleDateString("en-US")})
-  }
-  useEffect(()=>{
-      if(added>4){
+}
+
+useEffect(()=>{
+    if (ele) {
         props.append(ele);
-      }
-    
-  },[ele])
-  console.log(added);
-  //console.log(ele);
+    }
+},[ele])
   
   return (
     
